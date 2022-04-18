@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-8 mt-4 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Connexion</h3>
+          <form method="post">
+            <div class="form-group"><input [(ngModel)]="newUser.email" type="email" required placeholder="Email" name="email"  class="form-control"></div><br>
+            <div class="form-group"><input [(ngModel)]="newUser.password" type="password" required placeholder="Mot de passe" name="password"  class="form-control"></div><br>
+            <div class="form-group"><button (click)="submitForm()" class="btn btn-primary">valider</button></div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>

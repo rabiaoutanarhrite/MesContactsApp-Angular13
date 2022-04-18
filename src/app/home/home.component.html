@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-md-8 mt-4 mx-auto">
+    <div class="card">
+      <div class="card-body">
+          <div class="input-group">
+            <h3 class="card-title">Contact {{Date | date:"shortDate"}}</h3>
+            <input class="form-control border-end-0 border rounded-pill" [(ngModel)]="searchTerm" type="text" placeholder="Rechercher" id="example-search-input">
+            <span class="input-group-append">
+                <button class="btn btn-outline-secondary bg-white border-start-0 border rounded-pill ms-n3" (click)="findContact()" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+          </div>
+        <table class="table ">
+              <thead class="bg-dark text-white">
+                <tr>
+                  <th scope="col">Nom</th>
+                  <th scope="col">Prenom</th>
+                  <th scope="col">Tel</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let contact of Contacts; let i = index">
+                  <td >{{contact.nom | uppercase}}</td>
+                  <td>{{contact.prenom | uppercase}}</td>
+                  <td>{{contact.tel}}</td>
+                  <td>
+                    <button class="btn btn-sm btn-warning me-1" (click)="open(editcontact);editContact(i)"><i class="fa fa-edit"></i></button>
+                    <button class="btn btn-sm btn-danger"  (click)="open(deletecontact);confirmDelete(i)"><i class="fa fa-trash"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+
+<ng-template #editcontact let-modal>
+
+      <div class="modal-header">
+        <h5 class="modal-title">Modifier Contact</h5>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+        <form method="post">
+          <div class="form-group"><input [(ngModel)]="ContactToEdit.nom" type="text" required placeholder="Nom" name="nom" id="" class="form-control"></div><br>
+          <div class="form-group"><input [(ngModel)]="ContactToEdit.prenom" type="text" required placeholder="Prenom" name="prenom" id="" class="form-control"></div><br>
+          <div class="form-group"><input [(ngModel)]="ContactToEdit.tel" type="text" required placeholder="Tel" name="tel" id="" class="form-control"></div><br>
+          <div class="form-group"><button (click)="confirmUpdate();modal.close('Save click')" class="btn btn-primary">valider</button></div>
+        </form>
+      </div>
+
+</ng-template>
+
+ <!-- Delete Modal -->
+
+ <ng-template #deletecontact let-modal>
+
+  <div class="modal-header">
+    <h5 class="modal-title">Supprimer Contact</h5>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+    <form method="post">
+      <div class="form-group"><input [(ngModel)]="ContactToDelete.nom" type="text" required placeholder="Nom" name="nom" id="" class="form-control" disabled></div><br>
+      <div class="form-group"><input [(ngModel)]="ContactToDelete.prenom" type="text" required placeholder="Prenom" name="prenom" id="" class="form-control" disabled></div><br>
+      <div class="form-group"><input [(ngModel)]="ContactToDelete.tel" type="text" required placeholder="Tel" name="tel" id="" class="form-control" disabled></div><br>
+      <div class="form-group"><button (click)="deleteContact();modal.close('Save click')" class="btn btn-primary">Confirm</button></div>
+    </form>
+  </div>
+
+</ng-template>

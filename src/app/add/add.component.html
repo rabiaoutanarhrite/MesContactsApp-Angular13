@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-8 mt-4 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Nouveau Contact</h3>
+          <form method="post">
+            <div class="form-group"><input [(ngModel)]="newContact.nom" type="text" required placeholder="Nom" name="nom" id="" class="form-control"></div><br>
+            <div class="form-group"><input [(ngModel)]="newContact.prenom" type="text" required placeholder="Prenom" name="prenom" id="" class="form-control"></div><br>
+            <div class="form-group"><input [(ngModel)]="newContact.tel" type="text" required placeholder="Tel" name="tel" id="" class="form-control"></div><br>
+            <div class="form-group"><button (click)="saveContact()" class="btn btn-primary">valider</button></div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
